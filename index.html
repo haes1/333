@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Личный каталог публичных источников и контактов" />
+    <title>333 — личный каталог</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section id="loginView" class="auth-card card">
+        <div class="brand-mark">333</div>
+        <p class="eyebrow">личный каталог</p>
+        <h1>Вход</h1>
+        <p class="muted">Введите пароль, чтобы открыть каталог.</p>
+        <form id="loginForm" class="stack">
+          <label for="password">Пароль</label>
+          <input id="password" type="password" autocomplete="current-password" placeholder="Введите пароль" required />
+          <button class="button primary" type="submit">Войти</button>
+          <p id="loginError" class="error" role="alert" hidden>Неверный пароль.</p>
+        </form>
+        <p class="fine-print">Данные этой демо-версии хранятся только в браузере. Для настоящей защиты нужен серверный вход.</p>
+      </section>
+
+      <section id="appView" hidden>
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">личный каталог</p>
+            <h1>333</h1>
+          </div>
+          <button id="logoutButton" class="button ghost" type="button">Выйти</button>
+        </header>
+
+        <div class="notice">
+          Добавляйте ссылки только на публичные источники, которыми вы вправе пользоваться. Сервис не обходит авторизацию, CAPTCHA или закрытые профили.
+        </div>
+
+        <div class="grid">
+          <section class="card">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">источник</p>
+                <h2>Группа</h2>
+              </div>
+              <span id="groupCount" class="count">0</span>
+            </div>
+            <form id="groupForm" class="stack">
+              <label for="groupUrl">Ссылка на публичную группу</label>
+              <input id="groupUrl" type="url" placeholder="https://ok.ru/group/..." required />
+              <label for="groupName">Название группы <span class="optional">необязательно</span></label>
+              <input id="groupName" type="text" placeholder="Например, Новости города" />
+              <button class="button primary" type="submit">Добавить группу</button>
+            </form>
+            <div id="groupsList" class="list empty-state">Пока нет добавленных групп.</div>
+          </section>
+
+          <section class="card">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">каталог</p>
+                <h2>Люди</h2>
+              </div>
+              <span id="personCount" class="count">0</span>
+            </div>
+            <form id="personForm" class="stack">
+              <label for="personName">Имя</label>
+              <input id="personName" type="text" placeholder="Имя автора" required />
+              <label for="personUrl">Ссылка на публичный профиль</label>
+              <input id="personUrl" type="url" placeholder="https://ok.ru/profile/..." required />
+              <label for="personGroup">Группа / источник <span class="optional">необязательно</span></label>
+              <select id="personGroup">
+                <option value="">Без группы</option>
+              </select>
+              <button class="button primary" type="submit">Добавить запись</button>
+            </form>
+          </section>
+        </div>
+
+        <section class="card records-card">
+          <div class="section-heading records-heading">
+            <div>
+              <p class="eyebrow">записи</p>
+              <h2>Сохранённые ссылки</h2>
+            </div>
+            <div class="toolbar">
+              <input id="searchInput" type="search" placeholder="Поиск по имени..." aria-label="Поиск по имени" />
+              <button id="importButton" class="button secondary" type="button">Импорт CSV</button>
+              <button id="exportButton" class="button secondary" type="button">Экспорт CSV</button>
+              <input id="csvInput" type="file" accept=".csv,text/csv" hidden />
+            </div>
+          </div>
+          <p class="hint">CSV-формат: <code>name,url,group</code>. Импорт предназначен для разрешённого экспорта или данных, добавленных вручную.</p>
+          <div id="peopleList" class="records empty-state">Пока нет записей.</div>
+        </section>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
